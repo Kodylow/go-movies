@@ -3,6 +3,9 @@ import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Admin from "./components/Admin";
 import Movies from "./components/Movies";
 import Home from "./components/Home";
+import Movie from "./components/Movie";
+import CategoryPage from "./components/CategoryPage";
+import Categories from "./components/Categories";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
                   <Link to="/movies">Movies</Link>
                 </li>
                 <li className="list-group-item">
+                  <Link to="/by-category">Categories</Link>
+                </li>
+                <li className="list-group-item">
                   <Link to="/admin">Manage Catalog</Link>
                 </li>
               </ul>
@@ -30,7 +36,14 @@ function App() {
           </div>
           <div className="col-md-10">
             <Routes>
+              <Route path="/movies/:id" element={<Movie />} />
               <Route path="/movies" element={<Movies />} />
+              <Route exact path="/by-category" element={<CategoryPage />} />
+              <Route
+                exact
+                path="/by-category/drama"
+                render={(props) => <Categories {...props} title={`Drama`} />}
+              />
               <Route path="/admin" element={<Admin />} />
               <Route path="/home" element={<Home />} />
             </Routes>

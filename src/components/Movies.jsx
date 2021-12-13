@@ -1,4 +1,5 @@
 import React, { useState, Fragment, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Movies() {
   const [movies, setMovies] = useState([]);
@@ -18,7 +19,9 @@ function Movies() {
       <h2>Choose a Movie</h2>
       <ul>
         {movies.map((m) => (
-          <li key={m.id}>{m.title}</li>
+          <li key={m.id}>
+            <Link to={`/movies/${m.id}`}>{m.title}</Link>
+          </li>
         ))}
       </ul>
     </Fragment>
